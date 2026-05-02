@@ -1,0 +1,59 @@
+{
+  "best_model": "Logistic Regression",
+  "accuracy": 1.0,
+  "f1_score": 1.0,
+  "cv_mean": 1.0,
+  "cv_std": 0.0,
+  "class_names": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "all_models": {
+    "Logistic Regression": {
+      "accuracy": 1.0,
+      "f1_score": 1.0
+    },
+    "Naive Bayes": {
+      "accuracy": 1.0,
+      "f1_score": 1.0
+    },
+    "Random Forest": {
+      "accuracy": 1.0,
+      "f1_score": 1.0
+    }
+  },
+  "classification_report": {
+    "negative": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 350.0
+    },
+    "neutral": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 200.0
+    },
+    "positive": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 450.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1000.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1000.0
+    }
+  }
+}

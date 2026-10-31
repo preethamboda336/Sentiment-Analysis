@@ -39,7 +39,7 @@ sys.path.insert(0, os.path.join(ROOT, "src"))
 # ── Page Config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title  = "SentimentIQ Dashboard",
-    page_icon   = "🧠",
+    page_icon   = None,
     layout      = "wide",
     initial_sidebar_state = "expanded",
     menu_items  = {
@@ -276,7 +276,7 @@ def render_sidebar(df):
     with st.sidebar:
         st.markdown("""
         <div style="text-align:center; padding: 12px 0 20px 0;">
-            <div style="font-size:2rem;">🧠</div>
+            <div style="font-size:2rem;"></div>
             <div style="font-size:1.3rem; font-weight:700; color:#f1f5f9; 
                         letter-spacing:-0.5px;">SentimentIQ</div>
             <div style="font-size:0.72rem; color:#6366f1; font-weight:600;
@@ -289,11 +289,11 @@ def render_sidebar(df):
 
         page = st.radio(
             "Navigation",
-            ["📊  Overview",
-             "🏢  Brand Analytics",
-             "📡  Platform Insights",
-             "📈  Trend Analysis",
-             "🔮  Live Predictor"],
+            [" Overview",
+             " Brand Analytics",
+             " Platform Insights",
+             " Trend Analysis",
+             " Live Predictor"],
             label_visibility="collapsed"
         )
 
@@ -336,7 +336,7 @@ def apply_filters(df, brands, platforms):
 
 def page_overview(df, metrics):
     st.markdown("""
-    <div class="page-title">📊 Sentiment Overview</div>
+    <div class="page-title">Sentiment Overview</div>
     <div class="page-subtitle">
         Real-time sentiment analytics across brands, platforms, and topics
     </div>
@@ -449,7 +449,7 @@ def page_overview(df, metrics):
         st.plotly_chart(fig_plat, use_container_width=True)
 
     # Insights
-    st.markdown('<div class="section-header">💡 Automated Insights</div>',
+    st.markdown('<div class="section-header">Automated Insights</div>',
                 unsafe_allow_html=True)
     if "brand" in df.columns:
         brand_pos = brand_pct["positive"].idxmax()
@@ -462,13 +462,13 @@ def page_overview(df, metrics):
                      if "platform" in df.columns else "N/A")
 
         insights = [
-            f"🏆 <b>{brand_pos}</b> has the strongest positive sentiment score across all brands.",
-            f"⚠️ <b>{brand_neg}</b> receives the most negative feedback — consider reputation management.",
-            f"🔥 <b>{top_topic.capitalize()}</b> is the most complained-about topic across all brands.",
-            f"📡 <b>{most_act}</b> is the most active platform in your dataset.",
-            f"📊 Positive posts dominate at <b>{pos_pct}%</b> — overall brand health looks strong."
+            f" <b>{brand_pos}</b>has the strongest positive sentiment score across all brands.",
+            f" <b>{brand_neg}</b>receives the most negative feedback — consider reputation management.",
+            f" <b>{top_topic.capitalize()}</b>is the most complained-about topic across all brands.",
+            f" <b>{most_act}</b>is the most active platform in your dataset.",
+            f" Positive posts dominate at <b>{pos_pct}%</b> — overall brand health looks strong."
               if pos_pct > 50 else
-            f"📊 Negative sentiment at <b>{neg_pct}%</b> warrants urgent attention.",
+            f" Negative sentiment at <b>{neg_pct}%</b>warrants urgent attention.",
         ]
         for ins in insights:
             st.markdown(f'<div class="insight-card">{ins}</div>',
@@ -478,7 +478,7 @@ def page_overview(df, metrics):
 # ── Page 2: Brand Analytics ───────────────────────────────────────────────────
 
 def page_brand_analytics(df):
-    st.markdown('<div class="page-title">🏢 Brand Analytics</div>', unsafe_allow_html=True)
+    st.markdown('<div class="page-title">Brand Analytics</div>', unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Deep-dive reputation analysis per brand</div>',
                 unsafe_allow_html=True)
 
@@ -574,7 +574,7 @@ def page_brand_analytics(df):
 # ── Page 3: Platform Insights ─────────────────────────────────────────────────
 
 def page_platform_insights(df):
-    st.markdown('<div class="page-title">📡 Platform Insights</div>',
+    st.markdown('<div class="page-title">Platform Insights</div>',
                 unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Cross-platform sentiment comparison and volume analysis</div>',
                 unsafe_allow_html=True)
@@ -627,7 +627,7 @@ def page_platform_insights(df):
 # ── Page 4: Trend Analysis ────────────────────────────────────────────────────
 
 def page_trend_analysis(df):
-    st.markdown('<div class="page-title">📈 Trend Analysis</div>',
+    st.markdown('<div class="page-title">Trend Analysis</div>',
                 unsafe_allow_html=True)
     st.markdown('<div class="page-subtitle">Temporal sentiment patterns and volume trends</div>',
                 unsafe_allow_html=True)
@@ -693,7 +693,7 @@ def page_trend_analysis(df):
 # ── Page 5: Live Predictor ────────────────────────────────────────────────────
 
 def page_live_predictor(predictor):
-    st.markdown('<div class="page-title">🔮 Live Sentiment Predictor</div>',
+    st.markdown('<div class="page-title">Live Sentiment Predictor</div>',
                 unsafe_allow_html=True)
     st.markdown(
         '<div class="page-subtitle">Enter any social media post to get an instant '
@@ -702,16 +702,16 @@ def page_live_predictor(predictor):
     )
 
     if predictor is None:
-        st.error("⚠️ Model not loaded. Run `python main.py` first to train the model.")
+        st.error(" Model not loaded. Run `python main.py` first to train the model.")
         return
 
     # Quick examples
     st.markdown("**Try an example:**")
     ex_cols = st.columns(3)
     examples = [
-        ("😊 Positive", "Absolutely love Zomato! Delivery was super fast and food was perfect!"),
-        ("😠 Negative", "Terrible experience with Amazon. Support never resolved my refund."),
-        ("😐 Neutral",  "Just comparing Ola and Uber pricing before making my decision today."),
+        (" Positive", "Absolutely love Zomato! Delivery was super fast and food was perfect!"),
+        (" Negative", "Terrible experience with Amazon. Support never resolved my refund."),
+        (" Neutral",  "Just comparing Ola and Uber pricing before making my decision today."),
     ]
     user_text = ""
     for col, (label, ex) in zip(ex_cols, examples):
@@ -728,7 +728,7 @@ def page_live_predictor(predictor):
         max_chars=500,
     )
 
-    if st.button("🧠 Analyse Sentiment", type="primary", use_container_width=True):
+    if st.button(" Analyse Sentiment", type="primary", use_container_width=True):
         if not input_text.strip():
             st.warning("Please enter some text to analyse.")
         else:
@@ -738,12 +738,11 @@ def page_live_predictor(predictor):
 
             sent   = result["sentiment"]
             color  = COLOR_MAP[sent]
-            emoji  = {"positive": "😊", "negative": "😠", "neutral": "😐"}[sent]
+            emoji  = {"positive": "", "negative": "", "neutral": ""}[sent]
             conf   = result["confidence"]
 
             st.markdown(f"""
             <div class="prediction-box">
-                <div style="font-size:3rem;">{emoji}</div>
                 <div class="prediction-label" style="color:{color}">
                     {sent.upper()}
                 </div>
@@ -808,7 +807,7 @@ def page_live_predictor(predictor):
                 st.plotly_chart(fig, use_container_width=True)
 
             st.download_button(
-                "⬇️ Download Results CSV",
+                " Download Results CSV",
                 data=batch_df.to_csv(index=False),
                 file_name="sentiment_predictions.csv",
                 mime="text/csv",
